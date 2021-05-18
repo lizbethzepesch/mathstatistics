@@ -18,32 +18,41 @@ function task1(sample, name){
     let res = ''
     let headers = ['Sample',	'Frequence', 'Accumulated frequence', 'Relative frequence', 'Cumulative relative frequence']
     let arr = []
+    let third = 0
+    let fifth = 0
     arr.push([])
     arr.push([])
 
     for(let i = 0; i < sample.length; i++){
-        if(!arr.includes(sample[i]))
-            arr[].push(sample[i])
-        for(let j = 0; j < sample.length; j++){
-        
+        if(!arr[0].includes(sample[i]))
+            arr[0].push(sample[i])
+        for(let j = 0; j < sample.length; j++)
+            if(arr[0][j] === sample[i])
+                if(arr[1][j])    
+                    arr[1][j]++   
+                else arr[1][j] = 1     
     }
 
     res += '<table>'
-    
     res += '<caption>Task1 for ' + name + '</caption>'
     res += '<tr>'
     for(let header of headers) 
         res += '<th>' + header + '</th>'
     res += '</tr>'
-
-
-    for(let i = 0; i < sample.length; i++){
+    
+    for(let i = 0; i < arr[0].length; i++){
         res += '<tr>'
-        res += '<td>' + sample[i] + '</td>'
-        res += '<td>' + sample[i] + '</td>'
-        res += '<td>' + sample[i] + '</td>'
-        res += '<td>' + sample[i] + '</td>'
-        res += '<td>' + sample[i] + '</td>'
+        res += '<td>' + arr[0][i] + '</td>'
+        res += '<td>' + arr[1][i] + '</td>'
+
+        third += arr[1][i]
+
+        res += '<td>' + third + '</td>'
+        res += '<td>' + (arr[1][i] / sample.length) + '</td>'
+
+        fifth += (arr[1][i] / sample.length)
+
+        res += '<td>' + fifth + '</td>'
         res += '</tr>'
     }
 
