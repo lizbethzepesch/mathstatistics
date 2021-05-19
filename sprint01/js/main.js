@@ -16,7 +16,9 @@ function delSample(){
 }
 
 function sampleFilter(sample, arr){
-   
+    sample.sort(function(a, b) {
+        return a - b
+    })
     for(let i = 0; i < sample.length; i++){
         if(!arr[0].includes(sample[i]))
             arr[0].push(sample[i])
@@ -25,14 +27,10 @@ function sampleFilter(sample, arr){
                 if(arr[1][j])    
                     arr[1][j]++   
                 else arr[1][j] = 1     
-    }
+    } 
     for(let i = 0; i < arr[0].length; i++)
         arr[0][i] = parseFloat(arr[0][i])
 
-    arr.sort(function(a, b) {
-        return a - b
-    })
-    
 }
 
 function task1(sample, name){
@@ -80,14 +78,14 @@ function task2(sample, name){
     if (name === 'sampleA')
         document.querySelector('.task2').innerHTML = ''
 
-    //let res = '<caption>Task 2 for ' + name + '</caption>'
+    let res = '<caption>Task 2 for ' + name + '</caption>'
     let arr = []
     arr.push([])
     arr.push([])
 
     sampleFilter(sample, arr)
 
-    document.querySelector('.task2').innerHTML += '<canvas id="chart' + name +'" width="60" height="40">'
+    document.querySelector('.task2').innerHTML += res + '<canvas id="chart' + name +'" width="60" height="40">'
 
     setTimeout(() => {
         new Chart(document.querySelector('#chart' + name).getContext('2d'), {
@@ -97,7 +95,7 @@ function task2(sample, name){
             data: {
                 labels: arr[0],
                 datasets: [{
-                    label: 'Task 2 for ' + name,
+                    label: name,
                     backgroundColor: 'rgb(48, 92, 100)',
                     borderColor: 'rgb(48, 92, 100)',
                     data: arr[1]
@@ -109,7 +107,7 @@ function task2(sample, name){
 
     document.querySelector('.task2').innerHTML += '<br>'
 
-    document.querySelector('.task2').innerHTML += '<canvas id="chartBar' + name +'" width="60" height="40"></canvas>'
+    document.querySelector('.task2').innerHTML += '<canvas id="chartBar' + name +'" width="60" height="40">'
 
     setTimeout(() => {
         new Chart(document.querySelector('#chartBar' + name).getContext('2d'), {
@@ -128,7 +126,35 @@ function task2(sample, name){
         })
     }, 0)
 
- 
+    document.querySelector('.task2').innerHTML += '<div class="emp" id="empirical' + name + '"></div>'
+
+    let emp = []
+    let val = parseFloat((arr[1][0] /sample.length).toFixed(5))
+    emp.push([])
+    emp.push([])
+
+    emp[0][0] = val
+    emp[1][0] = 'x ≤ ' + arr[0][0]
+    
+    for(let i = 0; i < arr[0].length ; i++){
+    
+        val += parseFloat((arr[1][i + 1] / sample.length).toFixed(5))
+        
+        emp[0].push(val)
+        emp[1].push(arr[0][i] + ' < x ≤ ' + arr[0][i + 1])
+    }
+    emp[0][emp[0].length - 1] = 1.00000
+    emp[1][emp[0].length - 1] = 'x > ' + arr[0][arr[0].length - 1]
+
+    let outemp = '<label>F*(x) =</label>'
+
+    outemp += '<table>'  
+    for(let i = 0; i < emp[0].length ; i++)
+        outemp += '<tr>' + '<td>' + emp[0][i] + '</td>' + '<td>' + emp[1][i] + '</td>' + '</tr>'
+    
+    outemp += '</table>'
+    
+    document.querySelector('#empirical' + name ).innerHTML = outemp
     document.querySelector('.task2').innerHTML += '<br>'
 }
 
