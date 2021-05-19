@@ -7,7 +7,7 @@
 </head>
 
 <body>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
 
     <h1>Descriptive statistics</h1>
@@ -18,12 +18,12 @@
         <input type="button" name="delSampleButton" class="delSampleButton" value="delete sample" onclick="delSample()">
         <br>
         <br>
-        <input type="text" class="A"
+        <p>A:</p> <input type="text" class="A"
             value="9 12 12 14 9 18 20 18 25 18 20 14 20 14 16 14 14 18 16 18 20 22 16 18 14 18 18 18 20 20 20 22 18 9 20 16 9 20 20 16 24 18 9 20 24 22 18 18 22 9 14 20 16 20 23">
         <br>
         <br>
-        <input type="text" class="B"
-            value="0,43 4,29 -0,65 -1,27 1,91 0,62 3,65 -2,44 -1,93 -0,04 -2,8 -2,00 0,18 -2,33 -2,65 0,24 -1,04 0,64 0,97 -0,91 -3,16 -2,34 0,11 4,45 4,34 2,8 3,21 -1,04 -3,02 -1,54">
+        <p>B:</p> <input type="text" class="B"
+            value="0.43 4.29 -0.65 -1.27 1.91 0.62 3.65 -2.44 -1.93 -0.04 -2.8 -2.00 0.18 -2.33 -2.65 0.24 -1.04 0.64 0.97 -0.91 -3.16 -2.34 0.11 4.45 4.34 2.8 3.21 -1.04 -3.02 -1.54">
 
         <div class="extraSamples"> </div>
 
@@ -31,7 +31,10 @@
         <br>
 
         <input type="button" name='calculate' class='calculate' value='calculate'>
-
+        <br>
+        <br>
+        <br>
+        <br>
         <div class='task1'></div>
         <div class='task2'></div>
         <div class='task3'></div>
