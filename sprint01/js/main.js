@@ -241,38 +241,25 @@ function calcsForTask4(sample){
     arr.push([])
 
     sampleFilter(sample, arr)
-
-    let array = []
-    for (let i = 0; i < samples.length; i++) {
-        if (samples[i].value == "") continue 
-        array = sum(array, samples[i].value.split(' '))
-    }
-    for (let i = 0; i < array.length; i++) {
-        array[i] = array[i].replace(',', '.')
-        array[i] = parseFloat(array[i])
-    }
-    array.sort((a, b) => a - b)
-
+   
     for (let i = 0; i < arr[0].length; i++) {
         temp += arr[0][i] * arr[1][i]
     }
-    temp /= array.length
+    temp /= sample.length
 
-    let d1 = 0
     for (let i = 0; i < arr[0].length; i++) {
-        d1 += arr[0][i] * arr[0][i] * arr[1][i]
+        temp1 += arr[0][i] * arr[0][i] * arr[1][i]
     }
-    d1 /= array.length
-    d1 -= temp ** 2
-    
+    temp1 /= sample.length
+    temp1 -= temp ** 2
+   
 
     res.push(temp.toFixed(5))
-    res.push(temp.toFixed(5))
-    res.push(temp.toFixed(5))
-    res.push(temp.toFixed(5))
-    res.push(temp.toFixed(5))
-    res.push(temp.toFixed(5))
-
+    res.push(temp1.toFixed(4))
+    res.push(Math.sqrt(temp1).toFixed(4))
+    res.push((temp).toFixed(4))
+    res.push(temp1.toFixed(5))
+    res.push(Math.sqrt(temp1).toFixed(5))
 
     return res
 }
@@ -380,8 +367,8 @@ function task5(sample, name) {
 }
 
 document.querySelector("input.calculate").addEventListener("click", function () {
-    // let functions = [task1, task2, task3, task4, task5]
-    let functions = [task5]
+    let functions = [task1, task2, task3, task4, task5]
+    // let functions = [task4]
 
     for (let i = 0; i < functions.length; i++) {
 
