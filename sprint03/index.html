@@ -4,55 +4,53 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <title>Analysis of variance</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+    
 
     <h1>Analysis of variance</h1>
 
     <form name='tasks'>
 
-        <input type="button" name="addSampleButton" class="addSampleButton" value="add sample" onclick="addSample()">
-        <input type="button" name="delSampleButton" class="delSampleButton" value="delete sample" onclick="delSample()">
-        <br>
-        <br>
+        <input type="button" name="addA" class="addA" value="add A" onclick="myddA()">
+        <input type="button" name="delA" class="delA" value="delete A" onclick="mydelA()">
+        <br><input type="button" name="addB" class="addB" value="add B" onclick="myaddB()">
+        <input type="button" name="delB" class="delB" value="delete B" onclick="mydelB()">
         
-        <div>
-            <table>
+        
+        <div id='tableFactors'>
+            <table id='table'>
                 <tr>
                     <td rowspan="2">Factor B</td>
                     <td colspan="4">Factor A</td>
                 </tr>
-                <tr>
+                <tr id='factorsA'>
               
                     <td>A1</td>
                     <td>A2</td>
                     <td>A3</td>
 
                 </tr>
-                <tr>
+                <div id='factorsB'>
+                <tr id='b1'>
                     <td>B1</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
+                    <td><input type='text' name='sample' value="36.4 38.7 36.5 37.5 39.6 40.2 38.5 42.6 35.6 38.4"> </td>
+                    <td><input type='text' name='sample' value="41.2 42 42.8 44.3 45.2 44.3 42.4 39.5 38.4 39.6"> </td>
+                    <td><input type='text' name='sample' value="36.5 39.8 42.4 45.8 48.4 49.5 37.2 38.4 40.2 40.5"> </td>
                 </tr>
-                <tr>
+                <tr id='b2'>  
                     <td>B2</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
+                    <td><input type='text' name='sample' value="39.2 42.3 44.5 40.5 38.1 40.8 45.3 41.8 38.7 42"> </td>
+                    <td><input type='text' name='sample' value="39.7 38.4 42.5 44.3 47.2 48.4 45.2 46.4 49.2 49.8"> </td>
+                    <td><input type='text' name='sample' value="40.8 43.2 41.8 44.7 50 42.8 35.6 38.9 47.2 48.2"> </td>
                 </tr>
-
-            </table>
+            </div>
+            </table> 
         </div>
 
-
-        <div class="extraSamples"> </div>
-
-        <br>
-        <br>
 
         <input type="button" name='calculate' class='calculate' value='calculate'>
         <br>

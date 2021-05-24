@@ -6,7 +6,7 @@ h1, p, label, span, input, #matrix, table, div, .task1{
 }
 
 input{
-    width: 1000px;
+    width: 90%;
 }
 
 
@@ -29,7 +29,7 @@ form{
     padding: 10px;
 }
 
-.addSampleButton, .delSampleButton, .calculate {
+.addA, .addB, .delA, .delB, .calculate {
     width: 200px;
 }
 
