@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Analysis of variance</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+
+    <h1>Analysis of variance</h1>
+
+    <form name='tasks'>
+
+        <input type="button" name="addSampleButton" class="addSampleButton" value="add sample" onclick="addSample()">
+        <input type="button" name="delSampleButton" class="delSampleButton" value="delete sample" onclick="delSample()">
+        <br>
+        <br>
+        
+        <div>
+            <table>
+                <tr>
+                    <td rowspan="2">Factor B</td>
+                    <td colspan="4">Factor A</td>
+                </tr>
+                <tr>
+              
+                    <td>A1</td>
+                    <td>A2</td>
+                    <td>A3</td>
+
+                </tr>
+                <tr>
+                    <td>B1</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>B2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+
+            </table>
+        </div>
+
+
+        <div class="extraSamples"> </div>
+
+        <br>
+        <br>
+
+        <input type="button" name='calculate' class='calculate' value='calculate'>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class='table1'></div>
+        <div class='table2'></div>
+        <div class='table3'></div>
+        <div class='table4'></div>
+        <div class='table5'></div>
+
+
+    </form>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
