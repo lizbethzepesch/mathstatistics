@@ -38,8 +38,7 @@ function myaddA(){
         document.querySelector('#b' + (i + 1)).appendChild(td)
         document.querySelector('#tdB' + (i + 1) +'A' + a).appendChild(document.createElement("input"))
     }
-      
-    
+        
 }
 
 function mydelA(){
@@ -54,14 +53,9 @@ function mydelA(){
     fA--
 }
 
-
-
 function task1(){
     parseInput()
     let res =  `<table> <tr><td rowspan="3" colspan="2">Factor B</td> <td colspan="` + (3 + fA + 3 + fA) + `">Factor A</td> `
-    let table = document.querySelector('#input') 
-
-
     
     res += '<td rowspan="3">Rows mean</td>'
     res += '<td rowspan="3">General mean</td>'
@@ -143,7 +137,165 @@ function task1(){
 
 }
 
+function calcs2(){
+    let res = []
+    let temp = 0
+    for(let i = 0; i < 5; i++)
+        res.push([])
+
+    let A = []
+    let B = []
+    let AB = []
+    let rand = []
+    let gen = []
+
+    let arrays = []
+
+    arrays.push(A)
+    arrays.push(B)
+    arrays.push(AB)
+    arrays.push(rand)
+    arrays.push(gen)
+
+    for(let i = 0; i < 5; i++){
+        temp = 0
+        for(let j = 0; j < arrays[i].length; j++)  
+            temp += (arrays[i][j] - math.mean(arrays[i])) ** 2
+        res[0][i] = temp
+    }
+
+
+    for(let i = 0; i < 5; i++){
+        temp = 0
+        for(let j = 0; j < arrays[i].length; j++)  
+            temp += (arrays[i][j] - math.mean(arrays[i])) ** 2
+        res[0][i] = temp
+    }
+
+
+    return res
+}
+
+function task2(){
+    let res = `<table>
+    <tr>
+    <td>Resource of scattering</td>	
+    <td>Sum of square means</td>
+    <td>Degree of freedom</td>
+    <td>Statistical variation</td>
+    </tr>
+    `
+
+    res += `<tr>`
+    res += `<td>`
+    res += `A factor`
+    res += `</td>`
+    for(let i = 0; i < 3; i++)
+        res += `<td>` + calcs2()[0][i] + `</td>`
+    res += `</tr>`
+
+    // res += `<tr>`
+    // res += `<td>`
+    // res += `B factor`
+    // res += `</td>`
+    // for(let i = 0; i < 3; i++)
+    //     res += `<td>` + calcs2()[1][i] + `</td>`
+    // res += `</tr>`
+
+
+    // res += `<tr>`
+    // res += `<td>`
+    // res += `A B factors`
+    // res += `</td>`
+    // for(let i = 0; i < 3; i++)
+    //     res += `<td>` + calcs2()[2][i] + `</td>`
+    // res += `</tr>`
+
+
+    // res += `<tr>`
+    // res += `<td>`
+    // res += `Random factors`
+    // res += `</td>`
+    // for(let i = 0; i < 3; i++)
+    //     res += `<td>` + calcs2()[3][i] + `</td>`
+    // res += `</tr>`
+
+
+    // res += `<tr>`
+    // res += `<td>`
+    // res += `General variation`
+    // res += `</td>`
+    // for(let i = 0; i < 3; i++)
+    //     res += `<td>` + calcs2()[4][i] + `</td>`
+    // res += `</tr>`
+
+
+
+    res += `</table>`
+    document.querySelector('#task2').innerHTML = res
+}
+
+function task3(){
+    let res = '<table>'
+
+    res += '<tr>'
+    res += '<td>F*A:<td>'
+    res += '</tr>'
+    
+    res += '<tr>'
+    res += '<td>F*B:<td>'
+    res += '</tr>'
+
+    res += '<tr>'
+    res += '<td>F*AB:<td>'
+    res += '</tr>'
+
+    res += '</table>'
+    document.querySelector('#task3').innerHTML = res
+}
+
+function task4(){
+    let res = '<table>'
+
+    res += '<tr>'
+    res += '<td>Fcr. A:<td>'
+    res += '</tr>'
+    
+    res += '<tr>'
+    res += '<td>Fcr. A:<td>'
+    res += '</tr>'
+
+    res += '<tr>'
+    res += '<td>Fcr. AB:<td>'
+    res += '</tr>'
+
+    res += '</table>'
+
+    document.querySelector('#task4').innerHTML = res
+}
+
+function task5(){
+
+    let res = '<table>'
+
+    res += '<tr>'
+    res += '<td>F-testA:<td>'
+    res += '</tr>'
+    
+    res += '<tr>'
+    res += '<td>F-testB:<td>'
+    res += '</tr>'
+
+    res += '<tr>'
+    res += '<td>F-testAB:<td>'
+    res += '</tr>'
+
+    res += '</table>'
+    document.querySelector('#task5').innerHTML = res
+}
+
 function parseInput(){
+    samples = []
     for(let i = 0; document.getElementsByTagName('input')[i]; i ++)
         if(document.getElementsByTagName('input')[i].value)
             samples.push(document.getElementsByTagName('input')[i].value.split(' ').map(value => +value).filter(value => !isNaN(value)))
@@ -153,4 +305,8 @@ function parseInput(){
 
 function calc(){
     task1()
+    task2()
+    task3()
+    task4()
+    task5()
 }
