@@ -3,7 +3,7 @@ var fB = 0
 
 var samples = []
 
-function myddA(){
+function myddB(){
     let b = fB + 1
     let a = fA + 3
 
@@ -19,14 +19,14 @@ function myddA(){
     document.querySelector('#table').innerHTML += res   
 }
 
-function mydelA(){
+function mydelB(){
     if(fB === 0) return
     let b = fB + 2
     document.querySelector('#b' + (b)).remove()
     fB--
 }
 
-function myaddB(){
+function myaddA(){
     let a = fA + 4
     fA++
 
@@ -42,16 +42,16 @@ function myaddB(){
     
 }
 
-function mydelB(){
+function mydelA(){
     if(fA === 0) return
     
-    fA--
+    
     let a = fA + 3
     document.querySelector('#fa' + (a )).remove()
     
     for(let i = 0; i < fB + 2; i++)
         document.querySelector('#tdB' + (i + 1) +'A' + a).remove()
-    
+    fA--
 }
 
 
@@ -85,18 +85,36 @@ function task1(){
     }
     res += '</tr>'
 
-  
+
+    let mean = 0 
+    let temp = []
+
+    for(let i = 0; samples[i]; i++)
+        temp = [...temp, ...samples[i]]
+    mean = math.mean(temp)
+
     let j = 0
+    let k = 0
     for(let i = 0; i < fB + 2; i ++){
         res += '<tr>'
         res += '<td>B' + (i+1) + '</td>'
         res += '<td>Block ' + (i+1)+ '</td>'
         
             for(; j < fA + 3 * (i + 1); j++){
-                res += '<td>' + samples[j ].join(' ')+ '</td>'
-                res += '<td>'  + math.mean(samples[j]).toFixed(1)+ '</td>'
+                res += '<td>' + samples[j].join(' ') + '</td>'
+                res += '<td>'  + math.mean(samples[j]).toFixed(2)+ '</td>'
             }
-            
+
+            temp = []
+
+            for(; k < fA + 3 * (i + 1); k++){
+                temp = [...temp, ...samples[k]]  
+                
+            }
+        res += '<td>' + math.mean(temp).toFixed(2) + '</td>'
+        
+        if(i === 0)
+            res += '<td rowspan="' + 2 + fB + '">' + mean.toFixed(2) + '</td>'
         res += '</tr>' 
     }
     j = 0
@@ -105,9 +123,13 @@ function task1(){
    
     res += '<tr>'
     res += '<td colspan="2">Columns<br>mean</td>'
+    temp = []
     for(let i = 0; i < fA + 3; i ++){
-        res += '<td>colspan="2"' + math.mean(samples[i], samples[i + 3]) + '</td>'
-
+        for(j = i; samples[j] + 3; j += 3)
+            temp = [...temp, ...samples[j]]
+     
+        res += '<td colspan="2">' + math.mean(temp).toFixed(2) + '</td>'
+        temp = []
        
     }
 
