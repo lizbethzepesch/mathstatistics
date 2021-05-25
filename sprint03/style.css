@@ -47,3 +47,14 @@ div{
     display: flex;
     flex-flow: column;
 }
+
+
+#task1{
+    border: none;
+}
+
+#task1 td{
+    border: 1px #b6b6b6 solid;
+    /* border-radius: 7px; */
+
+}
