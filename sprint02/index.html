@@ -3,67 +3,85 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
-    <title>Analysis of variance</title>
+    <title>Testing of statistical hypothesis</title>
 </head>
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
 
-    <h1>Analysis of variance</h1>
+    <h1>Testing of statistical hypothesis</h1>
 
     <form name='tasks'>
 
-        <input type="button" name="addSampleButton" class="addSampleButton" value="add sample" onclick="addSample()">
-        <input type="button" name="delSampleButton" class="delSampleButton" value="delete sample" onclick="delSample()">
+        <input type="button" name="addInterval" class="addInterval" value="add interval" onclick="myAddInterval()">
+        <input type="button" name="delInterval" class="delInterval" value="delete interval" onclick="myDelInterval()">
         <br>
         <br>
         
         <div>
             <table>
+                <tbody id='table'>
                 <tr>
-                    <td rowspan="2">Factor B</td>
-                    <td colspan="4">Factor A</td>
-                </tr>
-                <tr>
-              
-                    <td>A1</td>
-                    <td>A2</td>
-                    <td>A3</td>
-
-                </tr>
-                <tr>
-                    <td>B1</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>B2</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
+                    <th>Start of interval</th>
+                    <th>End of interval</th>
+                    <th>Value of interval</th>
                 </tr>
 
+                <tr>
+                    <td><input type="text" id="start" value='340'></td>
+                    <td><input type="text" id='end' value='342.6'></td>
+                    <td><input type="text" id="value" value='12'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='342.6'></td>
+                    <td><input type="text" id='end' value='345.2'></td>
+                    <td><input type="text" id="value" value='18'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='345.2'></td>
+                    <td><input type="text" id='end' value='347.8'></td>
+                    <td><input type="text" id="value" value='26'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='347.8'></td>
+                    <td><input type="text" id='end' value='350.4'></td>
+                    <td><input type="text" id="value" value='38'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='350.4'></td>
+                    <td><input type="text" id='end' value='353'></td>
+                    <td><input type="text" id="value" value='40'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='353'></td>
+                    <td><input type="text" id='end' value='355.6'></td>
+                    <td><input type="text" id="value" value='26'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='355.6'></td>
+                    <td><input type="text" id='end' value='358.2'></td>
+                    <td><input type="text" id="value" value='16'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='358.2'></td>
+                    <td><input type="text" id='end' value='360.8'></td>
+                    <td><input type="text" id="value" value='6'></td>
+                </tr>
+            
+                </tbody>
             </table>
         </div>
 
-
-        <div class="extraSamples"> </div>
-
-        <br>
-        <br>
 
         <input type="button" name='calculate' class='calculate' value='calculate'>
         <br>
         <br>
         <br>
         <br>
-        <div class='table1'></div>
-        <div class='table2'></div>
-        <div class='table3'></div>
-        <div class='table4'></div>
-        <div class='table5'></div>
+        <div id='task1'></div>
+        <div id='task2'></div>
+        <div id='task3'></div>
 
 
     </form>
