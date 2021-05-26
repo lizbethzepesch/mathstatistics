@@ -4,10 +4,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; 
 }
 
-let start = 360.8
-let end = 361.8
-let value = getRandomInt(1, 50)
-let extraItervals = 0
+var start = 360.8
+var end = 361.8
+var value = getRandomInt(1, 50)
+var extraItervals = 0
+
+var start2 = 0.308
+var end2 = 1.308
+var value2 = getRandomInt(1, 50)
+var extraItervals2 = 0
+
+var intervals = []
+var values = []
+
+var intervals2 = []
+var values2 = []
 
 function myAddInterval(){
     extraItervals++
@@ -24,7 +35,6 @@ function myAddInterval(){
     value = getRandomInt(1, 30)
 }
 
-
 function myDelInterval(){
     if(!extraItervals) return
 
@@ -33,13 +43,6 @@ function myDelInterval(){
     end--
     extraItervals--
 }
-
-
-
-let start2 = 0.308
-let end2 = 1.308
-let value2 = getRandomInt(1, 50)
-let extraItervals2 = 0
 
 function myAddInterval2(){
     extraItervals2++
@@ -56,7 +59,6 @@ function myAddInterval2(){
     value2 = getRandomInt(1, 30)
 }
 
-
 function myDelInterval2(){
     if(!extraItervals2) return
 
@@ -65,3 +67,25 @@ function myDelInterval2(){
     end2--
     extraItervals2--
 }
+
+function task1(){
+    let res = ''
+
+    res = '<label>Interval statistical series:</label>'
+
+    res += '<table>'
+        for(let i = 0; i < intervals; i++)
+    res += '</table>'
+}
+
+function parseInput(){
+    intervals.push([])
+    intervals.push([])
+
+    for(let i = 0; i < intervals; i++){
+        intervals[0].push(document.getElementsByClassName('start')[i])
+        intervals[1].push(document.getElementsByClassName('end')[i])
+        values.push(document.getElementsByClassName('value')[i])
+    }
+    console.log(values)
+}parseInput()
