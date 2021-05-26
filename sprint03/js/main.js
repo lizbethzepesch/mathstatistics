@@ -605,18 +605,28 @@ function task5(){
 
     res += '<tr>'
     res += '<td>F-testA:<td>'
-    res += '<td>' + calcs5()[0]+ '</td>'
+    if(calcs5()[0])
+    res += '<td>' + calcs5()[0]+  ' => Approved</td>'
+    else
+    res += '<td>' + calcs5()[0]+ '  => Not Approved</td>'
+
     res += '</tr>'
     
     res += '<tr>'
     res += '<td>F-testB:<td>'
-    res += '<td>' + calcs5()[1]+ '</td>'
+    if(calcs5()[1])
+    res += '<td>' + calcs5()[1]+  ' => Approved</td>'
+    else
+    res += '<td>' + calcs5()[1]+ '  => Not Approved</td>'
 
     res += '</tr>'
 
     res += '<tr>'
     res += '<td>F-testAB:<td>'
-    res += '<td>' + calcs5()[2]+ '</td>'
+    if(calcs5()[2])
+    res += '<td>' + calcs5()[2]+  ' => Approved</td>'
+    else
+    res += '<td>' + calcs5()[2]+ '  => Not Approved</td>'
     res += '</tr>'
 
     res += '</table>'
