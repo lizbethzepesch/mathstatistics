@@ -13,6 +13,7 @@
     <h1>Testing of statistical hypothesis</h1>
 
     <form name='tasks'>
+        <label>first sample</label>
 
         <input type="button" name="addInterval" class="addInterval" value="add interval" onclick="myAddInterval()">
         <input type="button" name="delInterval" class="delInterval" value="delete interval" onclick="myDelInterval()">
@@ -73,6 +74,65 @@
             </table>
         </div>
 
+
+        
+        <label>second sample</label>
+        <input type="button" name="addInterval" class="addInterval" value="add interval" onclick="myAddInterval2()">
+        <input type="button" name="delInterval" class="delInterval" value="delete interval" onclick="myDelInterval2()">
+       
+        <div>
+            <table>
+                <tbody id='table2'>
+                <tr>
+                    <th>Start of interval</th>
+                    <th>End of interval</th>
+                    <th>Value of interval</th>
+                </tr>
+
+                <tr>
+                    <td><input type="text" id="start" value='0.228'></td>
+                    <td><input type="text" id='end' value='0.248'></td>
+                    <td><input type="text" id="value" value='6'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.248'></td>
+                    <td><input type="text" id='end' value='0.268'></td>
+                    <td><input type="text" id="value" value='16'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.268'></td>
+                    <td><input type="text" id='end' value='0.288'></td>
+                    <td><input type="text" id="value" value='21'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.288'></td>
+                    <td><input type="text" id='end' value='0.308'></td>
+                    <td><input type="text" id="value" value='36'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.308'></td>
+                    <td><input type="text" id='end' value='0.328'></td>
+                    <td><input type="text" id="value" value='42'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.348'></td>
+                    <td><input type="text" id='end' value='0.368'></td>
+                    <td><input type="text" id="value" value='32'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.368'></td>
+                    <td><input type="text" id='end' value='0.388'></td>
+                    <td><input type="text" id="value" value='22'></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="start" value='0.388'></td>
+                    <td><input type="text" id='end' value='0.408'></td>
+                    <td><input type="text" id="value" value='12'></td>
+                </tr>
+            
+                </tbody>
+            </table>
+        </div>
 
         <input type="button" name='calculate' class='calculate' value='calculate'>
         <br>

@@ -513,7 +513,6 @@ function task2(){
 
 function calcs3(){
     let res = []
-    let temp = 0
     let s = []
 
     for(let i = 0; i < 5; i++) s.push(calcs2()[i][2])
@@ -548,7 +547,7 @@ function task3(){
 
 function calcs4(){
     let res = []
-    let temp = 0
+
     let k = []
 
     for(let i = 0; i < 5; i++) k.push(calcs2()[i][1])
@@ -584,7 +583,7 @@ function task4(){
 }
 function calcs5(){
     let res = []
-    let temp = 0
+
     let c3 = []
     let c4 = []
 
