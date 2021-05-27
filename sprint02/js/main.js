@@ -1081,5 +1081,3 @@ function calc(){
     task2()
     task3()
 }
-
-calc()
