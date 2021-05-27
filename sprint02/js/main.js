@@ -68,16 +68,185 @@ function myDelInterval2(){
     extraItervals2--
 }
 
-function calcs1(){
+function series(){
+    let temp = 0
     let res = []
-
+    for(let i = 0; i < values.length; i++)
+        temp += values[i]
+    
+    for(let i = 0; i < values.length; i++)
+        res.push(values[i] / temp)
+    
     return res
 }
 
-function series(){
-    let res = []
+function method_parabol(func ,a, b, n) {
+    let h=(b-a)/n;
+    let k=0.0;
+    let x=a + h
+    for (let i = 1; i < n/2 + 1; i++) {
+      k += 4*func(x);
+      x += 2*h;
+    }
 
+    x = a + 2*h;
+    for(let i = 1; i < n/2; i++) {
+        k += 2*func(x)
+        x += 2*h
+    }
+    return (h/3)*(func(a)+func(b)+k)
+}
+
+function func (z) {
+    return Math.E ** (-1 * z ** 2 / 2);
+}
+
+function laplase(x) {
+    return (1 / Math.sqrt(2 * Math.PI)) * method_parabol(func, 0.0, x, 500) 
+}
+
+function table1(){
+    let res = []
+    res.push([])
+    res.push([])
+    let size = 0
+    let tempArr = []
+    let temp = 0
+    for(let i = 0; i < 10; i++)
+        res[0].push([])
+    for(let i = 0; i <values.length; i++){
+        res[0][i][0] = intervals[0][i]
+        res[0][i][1] = intervals[1][i]
+        res[0][i][2] = values[i]
+    }
+
+    for(let i = 0; i <values.length; i++)
+        tempArr.push(intervals[1][i] - (intervals[1][i]-intervals[0][i]) / 2)
+
+    for(let i = 0; i <values.length; i++)
+        size += values[i]
+
+    let temp1 = 0;
+
+    for(let i = 0; i <values.length; i++)
+        temp1 += tempArr[i] * values[i]
+    
+    let average = temp1 / size
+
+    let standartDeviation = 0
+    let selectiveVariance = 0
+
+    for (let i = 0; i < tempArr.length; i++) 
+        temp += values[i] * (tempArr[i] - average) ** 2
+    selectiveVariance = temp / size
+    standartDeviation = Math.sqrt(selectiveVariance)
+
+
+    let theorFreqs = []
+    let hitChances = []
+
+    for (let i = 0; i < tempArr.length; i++) {
+        let f0 = laplase((intervals[0][i] - average) / standartDeviation)
+        let f1 = laplase((intervals[1][i] - average) / standartDeviation)
+
+        theorFreqs.push(math.abs(f0 - f1) * size)
+        hitChances.push(math.abs(f0 - f1))
+
+    }
+    
+    
+    let array = calcs1(size, average, standartDeviation)
+    console.log(array)
+
+    for(let i = 0, j = 0; i <values.length; i++, j += 7){
+        res[0][i][3] = array['res'][j]
+        res[0][i][4] = array['res'][j + 1]
+        res[0][i][5] = array['res'][j + 2]
+        res[0][i][6] = array['res'][j + 3]
+        res[0][i][7] = array['res'][j + 4]
+        res[0][i][8] = array['res'][j + 5]
+        res[0][i][9] = array['res'][j + 6]
+    }
+
+
+    res[1].push(array['h0'])
+    res[1].push(array['numbers']['degreeOfFreedom'])
+    res[1].push(array['numbers']['observedValue'])
+    res[1].push(array['numbers']['criticalPoint'])
+    
     return res
+}
+
+function PirsonPoint (k) {
+    let criticalPointValue = 0
+
+    switch (k) {
+        case 1: criticalPointValue = 3.84; break
+        case 2: criticalPointValue = 5.99; break
+        case 3: criticalPointValue = 7.82; break
+        case 4: criticalPointValue = 9.49; break
+        case 5: criticalPointValue = 11.07; break
+        case 6: criticalPointValue = 12.59; break
+        case 7: criticalPointValue = 14.07; break
+        case 8: criticalPointValue = 15.510; break
+        case 9: criticalPointValue = 16.92; break
+        case 10: criticalPointValue = 18.310; break
+    }
+
+    return criticalPointValue
+}
+function calcs1(size, average, standartDeviation){
+    let res = []
+    let observedValue = 0
+    
+    for (let i = 0; i < values.length; i++) {
+        let xi = intervals[0][i]
+        let xiNext = intervals[1][i]
+        let ni = values[i]
+
+        let x1 = (xi - average) / standartDeviation
+        let x2 = (xiNext - average) / standartDeviation
+
+        let x1Sign = false
+        let x2Sign = false
+
+        if(x1 < 0){
+            x1 = -x1
+            x1Sign = true
+        }
+
+        if(x2 < 0){
+            x2 = -x2
+            x2Sign = true
+        }
+
+        let f1 = laplase(x1)
+        let f2 = laplase(x2)
+
+        if(x1Sign) f1 = -f1
+        if(x2Sign) f2 = -f2
+
+        let pi = f2 - f1
+        let niS = size * pi
+        let ki = ((ni - niS) ** 2) / niS
+
+        res.push(x1, x2, f1, f2, pi, niS, ki)
+        observedValue += ki
+    }
+    let k = values.length - 3
+    let criticalPoint = PirsonPoint(k)
+
+
+    return {
+        h0: observedValue < criticalPoint, 
+        res,
+        numbers: {
+            observedValue,
+            criticalPoint,
+            degreeOfFreedom: k
+        }
+    
+    }
 }
 
 function task1(){
@@ -129,7 +298,7 @@ function task1(){
     }, 0)
 
     res += '<br><label>Hypothesis:</label><br>'
-    res += '<label>H0: ' + calcs1()[0] + '</label><br>' 
+    res += '<label>H0: ' + table1()[1][0] + '</label><br>' 
 
 
     res += '<label>Iteration table:</label>'
@@ -143,16 +312,16 @@ function task1(){
     
     for(let i = 0; i < intervals[0].length; i++){
     res += '<tr>'
-        for(let i = 0; i < 10; i++)
-            res += '<td>' + values[i] + '</td>'
+        for(let j = 0; j < 10; j++)
+            res += '<td>' + table1()[0][i][j] + '</td>'
     res += '</tr>'
     }
     
     res += '</table>'
 
-    res += '<label>Power of freedom: ' + calcs1()[1] + '</label>'
-    res += '<label>Observed value P: ' + calcs1()[2] + '</label>'
-    res += '<label>Critical point p: ' + calcs1()[3] + '</label>'
+    res += '<label>Power of freedom: ' + table1()[1][1] + '</label>'
+    res += '<label>Observed value P: ' + table1()[1][2] + '</label>'
+    res += '<label>Critical point p: ' + table1()[1][3] + '</label>'
 
     document.querySelector('#task1').innerHTML += res
 }
